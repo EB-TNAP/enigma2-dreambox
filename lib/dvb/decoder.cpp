@@ -26,7 +26,7 @@
 #define AUDIO_SOURCE_HDMI 2
 #endif
 #ifndef AUDIO_SELECT_SOURCE
-#define AUDIO_SELECT_SOURCE _IOW('o', 10, int)
+#define AUDIO_SELECT_SOURCE _IOW('o', 50, int)
 #endif
 #ifndef AUDIO_GET_PTS
 #define AUDIO_GET_PTS _IOR('o', 19, __u64)
@@ -68,8 +68,9 @@ eDVBAudio::eDVBAudio(eDVBDemux *demux, int dev)
 	if (m_fd >= 0)
 	{
 		// DREAMBOX DREAM ONE HDMI AUDIO FIX: Always use HDMI audio source
-		// This forces TV audio to route through the working ALSA/HDMI path
+		// This forces TV audio to route through the working ALSA/HDMI path  
 		// instead of the broken DVB demux audio path
+		// BUILD VERSION: CLAUDE-2025-07-21-V2 (with AUDIO_SELECT_SOURCE fix)
 		::ioctl(m_fd, AUDIO_SELECT_SOURCE, AUDIO_SOURCE_HDMI);
 	}
 //#else
