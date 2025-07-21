@@ -25,6 +25,9 @@
 #ifndef AUDIO_SOURCE_HDMI
 #define AUDIO_SOURCE_HDMI 2
 #endif
+#ifndef AUDIO_SELECT_SOURCE
+#define AUDIO_SELECT_SOURCE _IOW('o', 10, int)
+#endif
 #ifndef AUDIO_GET_PTS
 #define AUDIO_GET_PTS _IOR('o', 19, __u64)
 #endif
