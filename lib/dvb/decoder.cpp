@@ -64,7 +64,10 @@ eDVBAudio::eDVBAudio(eDVBDemux *demux, int dev)
 #ifndef DREAMNEXTGEN
 	if (m_fd >= 0)
 	{
-		::ioctl(m_fd, AUDIO_SELECT_SOURCE, demux ? AUDIO_SOURCE_DEMUX : AUDIO_SOURCE_HDMI);
+		// DREAMBOX DREAM ONE HDMI AUDIO FIX: Always use HDMI audio source
+		// This forces TV audio to route through the working ALSA/HDMI path
+		// instead of the broken DVB demux audio path
+		::ioctl(m_fd, AUDIO_SELECT_SOURCE, AUDIO_SOURCE_HDMI);
 	}
 //#else
 //	m_TsPaser = new eTsParser();
